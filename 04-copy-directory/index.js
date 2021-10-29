@@ -15,7 +15,6 @@ const getFiles = async () => {
     items.forEach((item) =>
       fs.copyFile(path.join(__dirname, "files", item), path.join(__dirname, "files-copy", item), callback)
     );
-    console.log(items);
   } catch (err) {
     console.error(err);
   }
