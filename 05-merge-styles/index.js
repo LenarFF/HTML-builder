@@ -16,8 +16,6 @@ const getFiles = async () => {
      const stream = fs.createReadStream(path.join(__dirname, "styles", file.name), 'utf-8');
       stream.on("data", (partData) => output.write(partData));
     });
-    
-    console.log(files);
   } catch (err) {
     console.error(err);
   }

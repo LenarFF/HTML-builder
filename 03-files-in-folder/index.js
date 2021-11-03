@@ -17,7 +17,7 @@ const getFiles = async () => {
             console.log(
               `${path.parse(item.name).name} - ${path.extname(item.name)} - ${
                 stats.size
-              }kb`
+              }b`
             );
           }
         );

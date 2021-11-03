@@ -4,16 +4,14 @@ const path = require('path');
 
 fsPromises.mkdir(path.join(__dirname, "files-copy"), { recursive: true });
 
-function callback(err) {
-  if (err) throw err;
-  console.log("source.txt was copied to destination.txt");
-}
 
 const getFiles = async () => {
   try {
     const items = await fsPromises.readdir(path.join(__dirname, "files"));
     items.forEach((item) =>
-      fs.copyFile(path.join(__dirname, "files", item), path.join(__dirname, "files-copy", item), callback)
+      fs.copyFile(path.join(__dirname, "files", item), path.join(__dirname, "files-copy", item), (err) => {
+        if (err) console.error(err)
+      })
     );
   } catch (err) {
     console.error(err);
