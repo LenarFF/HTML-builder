@@ -7,7 +7,7 @@ const createIndexHTML = () => {
     path.join(__dirname, "template.html"),
     "utf-8",
     (err, template) => {
-      if (err) console.log(err);
+      if (err) console.error(err);
       const templateTags = template.match(/{{.+}}/gm);
       templateTags.map((tag) => {
         const tagName = tag.split("{")[2].split("}")[0];
@@ -15,13 +15,13 @@ const createIndexHTML = () => {
           path.join(__dirname, "components", `${tagName}.html`),
           "utf-8",
           (err, componentData) => {
-            if (err) console.log(err);
+            if (err) console.error(err);
             template = template.replace(tag, componentData);
             fs.writeFile(
               path.join(__dirname, "project-dist", "index.html"),
               template,
               (err) => {
-                if (err) console.log(err);
+                if (err) console.error(err);
               }
             );
           }
